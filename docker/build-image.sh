@@ -13,6 +13,17 @@ if [ $# -ge 2 ]; then
   ARCH=$2
 fi
 
+JAR_FILE_COUNT=$(find "../target/" -maxdepth 1 -name '*.jar' | wc -l)
+if [ $JAR_FILE_COUNT == 0  ]; then
+    echo "jar file not found, please execute: mvn clean package"
+    exit 1
+fi
+
+JAR_FILE_NAME=$(ls ../target/*.jar|grep -v source)
+echo ${JAR_FILE_NAME}
+
+cp ${JAR_FILE_NAME} ./app.jar
+
 java -Djarmode=layertools -jar app.jar extract
 
 docker build . -t midjourney-proxy:${VERSION}
