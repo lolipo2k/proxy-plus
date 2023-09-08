@@ -19,15 +19,16 @@ WORKDIR $SPRING_HOME
 
 COPY . .
 
-RUN echo "1231231321"
+RUN echo $(ls -1 /)
 
-RUN echo "$PWD"
+RUN echo $(ls -1 /home)
+
+RUN echo $(ls -1 $SPRING_HOME)
 
 RUN mvn clean package \
     && mv target/midjourney-proxy-*.jar ./app.jar \
     && rm -rf target
 
-RUN echo "$PWD"
 
 EXPOSE 8080 9876
 
