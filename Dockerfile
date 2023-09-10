@@ -19,6 +19,14 @@ WORKDIR $SPRING_HOME
 
 COPY . .
 
+RUN ls -l
+
+RUN mvn clean package \
+    && mv target/midjourney-proxy-*.jar ./app.jar \
+    && rm -rf target
+
+RUN ls -l
+
 EXPOSE 8080 9876
 
 ENV JAVA_OPTS -XX:MaxRAMPercentage=85 -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError \
