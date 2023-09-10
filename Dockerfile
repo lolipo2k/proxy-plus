@@ -19,13 +19,13 @@ WORKDIR $SPRING_HOME
 
 COPY . .
 
-RUN ls -l
+RUN ls -l $SPRING_HOME
 
 RUN mvn clean package \
     && mv target/midjourney-proxy-*.jar ./app.jar \
     && rm -rf target
 
-RUN ls -l
+RUN ls -l $SPRING_HOME
 
 EXPOSE 8080 9876
 
