@@ -31,4 +31,4 @@ ENV JAVA_OPTS -XX:MaxRAMPercentage=85 -Djava.awt.headless=true -XX:+HeapDumpOnOu
  -Dcom.sun.management.jmxremote.authenticate=false -Dlogging.file.path=/home/spring/logs \
  -Dserver.port=8080 -Duser.timezone=Asia/Shanghai
 
-ENTRYPOINT ["bash","-c","java $JAVA_OPTS -jar app-test-2.jar"]
+ENTRYPOINT ["bash","-c","java $JAVA_OPTS -jar app-test.jar"]
