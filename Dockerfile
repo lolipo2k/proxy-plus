@@ -19,13 +19,9 @@ WORKDIR $SPRING_HOME
 
 COPY . .
 
-RUN ls -l $SPRING_HOME
-
 RUN mvn clean package \
     && mv target/midjourney-proxy-*.jar ./app.jar \
     && rm -rf target
-
-RUN ls -l $SPRING_HOME
 
 EXPOSE 8080 9876
 
@@ -35,4 +31,4 @@ ENV JAVA_OPTS -XX:MaxRAMPercentage=85 -Djava.awt.headless=true -XX:+HeapDumpOnOu
  -Dcom.sun.management.jmxremote.authenticate=false -Dlogging.file.path=/home/spring/logs \
  -Dserver.port=8080 -Duser.timezone=Asia/Shanghai
 
-ENTRYPOINT ["bash","-c","java $JAVA_OPTS -jar app.jar"]
+ENTRYPOINT ["bash","-c","java $JAVA_OPTS -jar app-test.jar"]
